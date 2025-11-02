@@ -1,73 +1,77 @@
-# Welcome to your Lovable project
+# Darknet Watch
 
-## Project info
+Darknet Watch is a real-time network monitoring dashboard that simulates packet flow, bandwidth usage, and threat notifications. It is built as a demo for visualizing how a security team might keep tabs on critical infrastructure traffic without needing a live data feed.
 
-**URL**: https://lovable.dev/projects/8c092db0-eabf-41ea-a3f7-cf4397e57599
+## Features
 
-## How can I edit this code?
+- Live network statistics that refresh every few seconds (packets per second, bandwidth, active connections, and detected threats).
+- Bandwidth line chart powered by Recharts to show short-term trends.
+- Security alert panel that surfaces simulated DoS events, suspicious activity, and blocked connections.
+- Rolling traffic table with randomized IP addresses, ports, and protocol metadata to mimic log ingestion.
+- Modern UI components styled with Tailwind CSS and shadcn/ui primitives.
 
-There are several ways of editing your application.
+## Getting Started
 
-**Use Lovable**
+### Prerequisites
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/8c092db0-eabf-41ea-a3f7-cf4397e57599) and start prompting.
+- Node.js 18+ (20+ recommended)
+- npm (bundled with recent Node distributions)
 
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
+### Installation
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+npm install
+```
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+### Running the development server
 
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+```sh
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+Vite will print a local URL (typically `http://localhost:5173`) where you can explore the dashboard.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### Production build
 
-**Use GitHub Codespaces**
+```sh
+npm run build
+```
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+To preview the production bundle locally:
 
-## What technologies are used for this project?
+```sh
+npm run preview
+```
 
-This project is built with:
+### Additional scripts
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+- `npm run build:dev` — build with the development mode flag for quick diagnostics.
+- `npm run lint` — run ESLint across the project.
 
-## How can I deploy this project?
+## Project structure
 
-Simply open [Lovable](https://lovable.dev/projects/8c092db0-eabf-41ea-a3f7-cf4397e57599) and click on Share -> Publish.
+```
+src/
+  components/         # Dashboard widgets (stats cards, charts, tables, alerts)
+  hooks/              # Reusable hooks (if added later)
+  lib/                # Utility helpers
+  pages/              # Route-level components (Index, NotFound)
+  App.tsx             # Application shell and router
+  main.tsx            # React entry point
+```
 
-## Can I connect a custom domain to my Lovable project?
+## Customizing the data feed
 
-Yes, you can!
+Network traffic is currently generated with simple randomizers inside each component. This keeps the UI lively without requiring backend infrastructure. If you want to integrate real metrics, replace the random data in `NetworkDashboard`, `BandwidthChart`, `AlertsPanel`, and `TrafficTable` with calls to your API or WebSocket stream.
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+## Tech stack
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+- React + TypeScript
+- Vite build tooling
+- Tailwind CSS + shadcn/ui for styling and components
+- TanStack Query for future data fetching scenarios
+- Recharts for charting
+
+## License
+
+No license has been provided yet. Add one if you intend to share or publish this project.
